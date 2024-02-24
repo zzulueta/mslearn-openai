@@ -34,11 +34,11 @@ def main():
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Summarize the following text in 20 words or less:\n" + text}
-        ]
-)
+        ])
 
-print("Summary: " + response.choices[0].message.content + "\n")
-except Exception as ex: print(ex)
+        print("Summary: " + response.choices[0].message.content + "\n")
+        
+    except Exception as ex: print(ex)
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     main()
