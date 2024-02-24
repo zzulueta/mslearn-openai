@@ -6,7 +6,6 @@ from openai import AzureOpenAI
 
 # Set to True to print the full response from OpenAI for each call
 printFullResponse = False
-
 def main(): 
         
     try: 
@@ -19,9 +18,9 @@ def main():
         
         # Configure the Azure OpenAI client
         client = AzureOpenAI(
-        azure_endpoint = azure_oai_endpoint, 
-        api_key=azure_oai_key,  
-        api_version="2023-05-15"
+            azure_endpoint = azure_oai_endpoint, 
+            api_key=azure_oai_key,  
+            api_version="2023-05-15"
         )
 
         while True:
