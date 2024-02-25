@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 
 # Add Azure OpenAI package
+from openai import AzureOpenAI
 
 # Set to True to print the full response from OpenAI for each call
 printFullResponse = False
@@ -17,6 +18,11 @@ def main():
         azure_oai_deployment = os.getenv("AZURE_OAI_DEPLOYMENT")
         
         # Configure the Azure OpenAI client
+        client = AzureOpenAI(
+            azure_endpoint = azure_oai_endpoint, 
+            api_key=azure_oai_key,  
+            api_version="2023-05-15"
+        )
 
         while True:
             print('\n1: Add comments to my function\n' +
@@ -51,6 +57,18 @@ def call_openai_model(prompt, model, client):
     user_message = prompt
 
     # Format and send the request to the model
+    messages =[
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": user_message},
+    ]
+
+    # Call the Azure OpenAI model
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=0.7,
+        max_tokens=1000
+    )
     
     # Print the response to the console, if desired
     if printFullResponse:
