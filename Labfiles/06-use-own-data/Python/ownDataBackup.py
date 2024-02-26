@@ -25,23 +25,13 @@ def main():
             api_version="2023-09-01-preview")
 
         # Get the prompt
-        text = input('\nEnter a question:\n\nEnter "exit" to quit.\n')
-
-        # If text is not equal to 'exit' then continue loop
-        while text.lower() != 'exit':
-            call_openai_model(text, client, azure_oai_deployment, azure_search_endpoint, azure_search_key, azure_search_index)
-            text = input('\nEnter a question:\n\nEnter "exit" to quit.\n')
+        text = input('\nEnter a question:\n\nEnter "exit" to quit.')
 
         # If text = 'exit' then quit
         if text.lower() == 'exit':
             print('Exiting program...')
             return
 
-    except Exception as ex:
-        print(ex)
-#define the function call_openai_model(text, client, azure_oai_deployment, azure_search_endpoint, azure_search_key, azure_search_index)
-def call_openai_model(text, client, azure_oai_deployment, azure_search_endpoint, azure_search_key, azure_search_index):
-    try:
         # Create extension config for own data
         extension_config = dict(dataSources = [  
                 { 
@@ -63,7 +53,7 @@ def call_openai_model(text, client, azure_oai_deployment, azure_search_endpoint,
             temperature = 0.7,
             max_tokens = 1000,
             messages = [
-                {"role": "system", "content": "You are a friendly and professional agent called BeSSSfriend who answers questions for the Social Security System. You will only answer based on data provided you. You will reply in the same language you were asked."},
+                {"role": "system", "content": "You are a helpful travel agent"},
                 {"role": "user", "content": text}
             ],
             extra_body = extension_config

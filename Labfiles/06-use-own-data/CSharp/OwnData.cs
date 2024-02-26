@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration.Json;
 using Azure;
 
 // Add Azure OpenAI package
-
+using Azure.AI.OpenAI;
   
 // Get configuration settings  
 IConfiguration config = new ConfigurationBuilder()
@@ -45,7 +45,7 @@ ChatCompletionsOptions chatCompletionsOptions = new ChatCompletionsOptions()
         new ChatMessage(ChatRole.User, text)
     },
     MaxTokens = 600,
-    Temperature = 0.9f,
+    Temperature = 0.7f,
     DeploymentName = oaiDeploymentName,
     // Specify extension options
     AzureExtensionsOptions = new AzureChatExtensionsOptions()
